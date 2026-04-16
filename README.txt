@@ -1,1 +1,1 @@
-CCC v4.4 merged full app. Home, Track, Train, Session, History, Travel.
+CCC v4.5 premium merge with restored premium home look, working session flow, and all exercise links.
