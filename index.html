@@ -1,1 +1,80 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>CCC v4.3.1</title><link rel="stylesheet" href="styles.css"></head><body><div class="app"><h1>CCC v4.3.1 Fixed</h1><div class="tabs"><button class="tab active" data-t="train">Train</button><button class="tab" data-t="session">Session</button><button class="tab" data-t="history">History</button></div><div id="train" class="panel active"><div id="list"></div></div><div id="session" class="panel"><div class="card" id="empty">Tap Start Session from Train.</div><div class="card hidden" id="card"><div class="row"><div><div class="small">Workout</div><div id="wname" class="big"></div></div><div id="prog" class="badge"></div></div><div id="icon" class="icon">💪</div><div id="ename" class="big"></div><div id="cue" class="small"></div><a id="watch" class="link" href="#" target="_blank">Watch Example</a><div class="row" style="margin-top:12px"><div class="mini"><div class="small">Target</div><div id="target" class="med"></div></div><div class="mini"><div class="small">Rest</div><div id="rest" class="med">01:30</div></div></div><div class="row2"><button id="restBtn">Start Rest</button><button id="doneBtn">Done Exercise</button></div><div class="row2"><button id="skipBtn">Skip</button><button id="finishBtn">Finish</button></div><div id="status" class="small ok"></div></div></div><div id="history" class="panel"><div class="card"><div class="big">Workout History</div><div id="hlist"></div></div></div></div><script src="app.js"></script></body></html>
+<!doctype html><html><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CCC v4.4</title><link rel="stylesheet" href="styles.css">
+</head><body><div class="app">
+<header class="hero"><div class="eyebrow">Carnivore Command Center</div><h1>Wayne Savage v4.4</h1><div class="sub">Merged Full App</div></header>
+<nav class="tabs">
+<button class="tab active" data-t="home">Home</button>
+<button class="tab" data-t="track">Track</button>
+<button class="tab" data-t="train">Train</button>
+<button class="tab" data-t="session">Session</button>
+<button class="tab" data-t="history">History</button>
+<button class="tab" data-t="travel">Travel</button>
+</nav>
+
+<section id="home" class="panel active">
+<div class="card"><div class="row"><div class="title">Latest Readiness</div><div class="badge" id="readinessPill">0%</div></div><div class="bar"><span id="readinessBar"></span></div><div class="hint" id="coachMessage">Start by saving your first check-in.</div></div>
+<div class="grid4">
+<div class="card"><div class="small">Weight</div><div class="big" id="statWeight">--</div></div>
+<div class="card"><div class="small">Waist</div><div class="big" id="statWaist">--</div></div>
+<div class="card"><div class="small">Protein</div><div class="big" id="statProtein">--</div></div>
+<div class="card"><div class="small">Steps</div><div class="big" id="statSteps">--</div></div>
+</div>
+<div class="grid4">
+<div class="card"><div class="small">Entries</div><div class="big" id="sumEntries">0</div></div>
+<div class="card"><div class="small">Avg Protein</div><div class="big" id="sumProtein">0</div></div>
+<div class="card"><div class="small">Avg Steps</div><div class="big" id="sumSteps">0</div></div>
+<div class="card"><div class="small">Workouts</div><div class="big" id="sumWorkouts">0</div></div>
+</div>
+<div class="card"><div class="title">Weight Trend</div><canvas id="weightChart" height="180"></canvas></div>
+</section>
+
+<section id="track" class="panel">
+<div class="card">
+<div class="title">Daily Check-In</div>
+<div class="form">
+<input id="date" type="date" class="full">
+<input id="weight" placeholder="Weight">
+<input id="waist" placeholder="Waist">
+<div><input id="protein" placeholder="Protein"><div class="chips"><button class="chip" data-fill="protein" data-value="150" type="button">150</button><button class="chip" data-fill="protein" data-value="190" type="button">190</button><button class="chip" data-fill="protein" data-value="220" type="button">220</button></div></div>
+<div><input id="steps" placeholder="Steps"><div class="chips"><button class="chip" data-fill="steps" data-value="4000" type="button">4000</button><button class="chip" data-fill="steps" data-value="8000" type="button">8000</button><button class="chip" data-fill="steps" data-value="10000" type="button">10000</button></div></div>
+<select id="backPain"><option value="">Back pain</option><option value="0">0 none</option><option value="2">2 slight</option><option value="4">4 manageable</option><option value="6">6 limits</option><option value="8">8 severe</option><option value="10">10 stop</option></select>
+<select id="kneePain"><option value="">Knee pain</option><option value="0">0 none</option><option value="2">2 slight</option><option value="4">4 manageable</option><option value="6">6 limits</option><option value="8">8 severe</option><option value="10">10 stop</option></select>
+<select id="energy" class="full"><option value="">Energy</option><option value="3">3 dragging</option><option value="5">5 okay</option><option value="7">7 solid</option><option value="9">9 strong</option><option value="10">10 peak</option></select>
+<textarea id="notes" class="full" placeholder="Notes"></textarea>
+</div>
+<div class="row2"><button id="saveBtn">Save Check-In</button><button id="clearFormBtn" class="alt">Clear Form</button></div>
+<div id="saveStatus" class="ok"></div>
+</div>
+</section>
+
+<section id="train" class="panel"><div id="trainList"></div></section>
+
+<section id="session" class="panel">
+<div class="card" id="sessionEmpty">Tap Start Session from Train or Travel.</div>
+<div class="card hidden" id="sessionCard">
+<div class="row"><div><div class="small">Workout</div><div id="sessionWorkout" class="title"></div></div><div id="sessionProgress" class="badge"></div></div>
+<div id="sessionIcon" class="icon">💪</div>
+<div id="sessionExercise" class="big"></div>
+<div id="sessionCue" class="hint"></div>
+<a id="sessionWatch" class="link" href="#" target="_blank">Watch Example</a>
+<div class="grid2">
+<div class="card mini"><div class="small">Target</div><div id="sessionTarget" class="big">4 x 10</div></div>
+<div class="card mini"><div class="small">Rest</div><div id="restDisplay" class="big">01:30</div></div>
+</div>
+<div class="row2"><button id="restBtn" class="alt">Start Rest</button><button id="doneBtn">Done Exercise</button></div>
+<div class="row2"><button id="skipBtn" class="alt">Skip</button><button id="finishBtn" class="alt">Finish Workout</button></div>
+<div id="sessionStatus" class="ok"></div>
+</div>
+</section>
+
+<section id="history" class="panel">
+<div class="card"><div class="row"><div class="title">Check-In History</div><button id="exportBtn" class="smallbtn">Export JSON</button></div><div id="checkinHistory"></div></div>
+<div class="card"><div class="title">Workout History</div><div id="workoutHistory"></div></div>
+</section>
+
+<section id="travel" class="panel">
+<div class="card"><div class="title">Travel Workout</div><select id="travelSelect"><option value="hotel">Hotel Gym</option><option value="bodyweight">No Equipment</option><option value="recovery">Recovery Day</option></select></div>
+<div id="travelWorkout"></div>
+</section>
+</div><script src="app.js"></script></body></html>

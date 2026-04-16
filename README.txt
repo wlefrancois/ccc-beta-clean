@@ -1,1 +1,1 @@
-CCC v4.3.1 simplified fixed build with working Start Session flow.
+CCC v4.4 merged full app. Home, Track, Train, Session, History, Travel.
